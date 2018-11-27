@@ -5,9 +5,9 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface CompanyRepository extends PagingAndSortingRepository<User, Long> {
+public interface CompanyRepository extends PagingAndSortingRepository<Company, Long> {
 
-    List<User> findByName(@Param("lastName") String name);
+    List<User> findByName(@Param("name") String name);
 
-    List<User> findByFirstName(@Param("firstName") String firstName);
+    List<User> findByDomain(@Param("domain") String domain);
 }

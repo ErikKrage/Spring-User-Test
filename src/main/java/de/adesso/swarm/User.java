@@ -1,9 +1,6 @@
 package de.adesso.swarm;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -16,7 +13,7 @@ public class User {
     private String lastName;
     private UGroup userGroup;
 
-
+    @Transient
     private final String OUTPUT_FORMAT = "USER #%d: %s, %s (%s)";
 
     public User() {
@@ -36,6 +33,10 @@ public class User {
     @Override
     public String toString() {
         return String.format(OUTPUT_FORMAT, id, lastName, firstName, userGroup);
+    }
+
+    public Long getId(){
+        return id;
     }
 
     public String getFirstName() {

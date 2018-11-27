@@ -12,23 +12,41 @@ import org.springframework.context.annotation.Bean;
 public class SwarmApplication {
 
     private static final Logger log = LoggerFactory.getLogger(SwarmApplication.class);
-    private static UserRepository global_repository;
+    private static UserRepository globalUserRepository;
+    private static CompanyRepository globalCompanyRepository;
+    private static final String VERSION = "0.3.1";
 
     public static void main(String[] args) {
+        // TODO poll current version and link to jar if necessary
         SpringApplication.run(SwarmApplication.class, args);
+        System.out.println();
     }
 
     @Bean
-    public CommandLineRunner init(UserRepository repository) {
-        global_repository = repository;
-        log.info("Repository registered!");
+    public CommandLineRunner init(UserRepository _repositoryUser) {
+        globalUserRepository = _repositoryUser;
+        log.info("User repository registered!");
         return (args) -> {
-            repository.save(new User());
-            log.info("Dummy created.");
+            _repositoryUser.save(new User());
+            log.info("User dummy created.");
         };
     }
 
-    public static UserRepository getGlobal_repository(){
-        return global_repository;
+    @Bean
+    public CommandLineRunner initCompanies(CompanyRepository _repositoryCompany){
+        globalCompanyRepository = _repositoryCompany;
+        log.info("Company repository registered!");
+        return (args) -> {
+            _repositoryCompany.save(new Company());
+            log.info("Company dummy created.");
+        };
+    }
+
+    public static UserRepository getGlobalUserRepository(){
+        return globalUserRepository;
+    }
+
+    public static CompanyRepository getGlobalCompanyRepository(){
+        return globalCompanyRepository;
     }
 }

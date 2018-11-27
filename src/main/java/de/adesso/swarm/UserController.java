@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class UserController {
-    static UserRepository repo = SwarmApplication.getGlobal_repository();
+    static UserRepository repo = SwarmApplication.getGlobalUserRepository();
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
     public static void createUser() {
