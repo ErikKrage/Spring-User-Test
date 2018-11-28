@@ -30,8 +30,7 @@ public class Token {
         tokenClass = _tClass;
         tokenValue = _tValue;
         if (tokenClass == TokenClass.UNDEFINED) {
-            id = Math.max(currentMaxId + 1, TokenClass.values().length);
-            currentMaxId++;
+            id = ++currentMaxId;
         } else
             id = idMap.get(tokenClass);
     }
